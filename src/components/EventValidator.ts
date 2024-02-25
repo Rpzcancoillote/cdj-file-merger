@@ -175,7 +175,6 @@ const event_validator = (file: MyFile): Validator => {
         }
 
         if (line_errors.length === 0) {
-            console.log('Une ligne parfaite !')
             return {
                 errors: line_errors,
                 validated: {

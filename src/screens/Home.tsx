@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { useDropzone } from 'react-dropzone'
 import readXlsxFile from 'read-excel-file'
+import { CSVLink } from 'react-csv'
 import event_validator from '../components/EventValidator'
 
 const HomeScreen = () => {
@@ -12,6 +13,24 @@ const HomeScreen = () => {
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone()
 
+    // SCROLL EFFECT
+    React.useEffect(() => {
+        window.scrollTo({
+            left: 0,
+            top: document.getElementById('loading')?.scrollHeight,
+            behavior: 'smooth',
+        })
+    }, [launched])
+
+    React.useEffect(() => {
+        window.scrollTo({
+            left: 0,
+            top: document.getElementById('results')?.scrollHeight,
+            behavior: 'smooth',
+        })
+    }, [analyzedFiles])
+
+    //PROCESSING
     const processFiles = (myfiles: File[]) => {
         setLaunched(true)
         Promise.all(myfiles.map((file) => readXlsxFile(file))).then((content) => {
@@ -66,7 +85,13 @@ const HomeScreen = () => {
         []
     )
 
-    console.log('DATA : ', categories, partners)
+    const allValidatedEvents = analyzedFiles.map((af) => af.events.map((e) => e)).flat()
+    const csvHeader = allValidatedEvents.length !== 0 ? Object.keys(allValidatedEvents[0]) : []
+    const allEventsToCSV = allValidatedEvents.map((e) =>
+        // @ts-ignore
+        Object.keys(e).reduce((acc, cur) => [...acc, String(e[cur])], [] as String[])
+    )
+    allEventsToCSV.unshift(csvHeader)
 
     return (
         <>
@@ -111,12 +136,12 @@ const HomeScreen = () => {
             {launched && (
                 <>
                     {analyzedFiles.length === 0 ? (
-                        <Section>
+                        <Section id="loading">
                             <Loading>Traitement en cours...</Loading>
                         </Section>
                     ) : (
                         <>
-                            <Section>
+                            <Section id="results">
                                 <Title>Résultats du traitement</Title>
                                 <Horizontal>
                                     <VData>
@@ -175,6 +200,14 @@ const HomeScreen = () => {
                                     </VData>
                                 </Horizontal>
                             </Section>
+                            <ButtonContainer>
+                                <CSVLinkButton
+                                    data={allEventsToCSV as any}
+                                    target="_blank"
+                                    filename={`${new Date().getTime()}_partners_events.csv`}>
+                                    Exporter le résultat
+                                </CSVLinkButton>
+                            </ButtonContainer>
                             <Section>
                                 <Title>Analyse des données</Title>
                                 {analyzedFiles.map((file_error) => (
@@ -196,13 +229,13 @@ const HomeScreen = () => {
                                     </>
                                 ))}
                             </Section>
-                            <ButtonContainer>
-                                <Button>Exporter le résultat</Button>
-                            </ButtonContainer>
                         </>
                     )}
                 </>
             )}
+            <ScrollToTop onClick={() => window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })}>
+                <Chevron src={require('../assets/chevron.png')} />
+            </ScrollToTop>
             <Footer></Footer>
         </>
     )
@@ -211,6 +244,7 @@ const HomeScreen = () => {
 export default HomeScreen
 
 const Header = styled.header`
+    box-shadow: 0px 3px 5px #000000;
     background-color: #344d59;
     justify-content: center;
     align-items: center;
@@ -235,7 +269,7 @@ const Section = styled.section`
     background-color: #efefef;
     border-radius: 15px;
     padding: 50px;
-    margin: 50px;
+    margin: 50px 100px;
 `
 const Horizontal = styled.div`
     flex-direction: row;
@@ -344,8 +378,42 @@ const Button = styled.button<{ disabled?: boolean }>`
         ${(props) => !props.disabled && 'background-color: #137C8BCC;'}
     }
 `
+const CSVLinkButton = styled(CSVLink)`
+    box-shadow: 1px 1px 1px #000000;
+    background-color: #137c8b;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 5px 25px;
+    font-size: 20px;
+    color: #ffffff;
+    margin: auto;
+    border: 0px;
+
+    &:hover {
+        background-color: #137c8bcc;
+    }
+`
 const Footer = styled.footer`
+    box-shadow: 0px -3px 5px #000000;
     background-color: #344d59;
     margin-top: 50px;
     height: 100px;
+`
+const ScrollToTop = styled.div`
+    box-shadow: 0px 0px 5px #000000;
+    background-color: #137c8b;
+    border-radius: 40px;
+    cursor: pointer;
+    position: fixed;
+    height: 50px;
+    bottom: 30px;
+    width: 50px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+const Chevron = styled.img`
+    height: 20px;
+    width: 20px;
 `
