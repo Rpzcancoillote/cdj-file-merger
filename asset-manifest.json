@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/cdj-file-merger/static/css/main.86005eee.css",
-    "main.js": "/cdj-file-merger/static/js/main.cb28c4d3.js",
+    "main.css": "/cdj-file-merger/static/css/main.fd060066.css",
+    "main.js": "/cdj-file-merger/static/js/main.0df8526a.js",
     "static/js/453.58b009d7.chunk.js": "/cdj-file-merger/static/js/453.58b009d7.chunk.js",
+    "static/media/Paris2024-Variable.ttf": "/cdj-file-merger/static/media/Paris2024-Variable.03a40a690efcb22946bb.ttf",
     "static/media/Roboto-Regular.ttf": "/cdj-file-merger/static/media/Roboto-Regular.f25bd05915c1a3468d3d.ttf",
-    "static/media/chevron.png": "/cdj-file-merger/static/media/chevron.89737056325f08ee4a01.png",
+    "static/media/header.png": "/cdj-file-merger/static/media/header.568b6b472452d5404912.png",
+    "static/media/xls.png": "/cdj-file-merger/static/media/xls.10f985122116f274c5e7.png",
     "index.html": "/cdj-file-merger/index.html",
-    "main.86005eee.css.map": "/cdj-file-merger/static/css/main.86005eee.css.map",
-    "main.cb28c4d3.js.map": "/cdj-file-merger/static/js/main.cb28c4d3.js.map",
+    "main.fd060066.css.map": "/cdj-file-merger/static/css/main.fd060066.css.map",
+    "main.0df8526a.js.map": "/cdj-file-merger/static/js/main.0df8526a.js.map",
     "453.58b009d7.chunk.js.map": "/cdj-file-merger/static/js/453.58b009d7.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.86005eee.css",
-    "static/js/main.cb28c4d3.js"
+    "static/css/main.fd060066.css",
+    "static/js/main.0df8526a.js"
   ]
 }
