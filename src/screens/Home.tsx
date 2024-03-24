@@ -3,6 +3,7 @@ import * as React from 'react'
 import styled from 'styled-components'
 import FileMerger from '../components/FileMerger'
 import KmlExtractor from '../components/KmlExtractor'
+import { isMobile } from 'react-device-detect'
 
 const HomeScreen = () => {
     const [action, setAction] = React.useState<'filemerger' | 'kmlextractor'>('kmlextractor')
@@ -54,6 +55,7 @@ const Header = styled.header`
 const BackgroundHeader = styled.img`
     height: ${HEADER_HEIGHT}px;
     position: absolute;
+    object-fit: cover;
     width: 100%;
 `
 const MenuContent = styled.div`
@@ -67,9 +69,10 @@ const Pagetitle = styled.h1`
     text-transform: uppercase;
     color: #ffffff;
     z-index: 1;
+    text-align: center;
 
     line-height: 50px;
-    height: 50px;
+    min-height: 50px;
     margin: 0;
 `
 const Pagesubtitle = styled.h2`
@@ -77,9 +80,10 @@ const Pagesubtitle = styled.h2`
     color: #ffffff;
     z-index: 1;
     font-weight: normal;
+    text-align: center;
 
     line-height: 50px;
-    height: 50px;
+    min-height: 50px;
     margin: 0;
     margin-bottom: 20px;
 `

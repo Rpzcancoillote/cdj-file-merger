@@ -21,19 +21,23 @@ const FileMerger = () => {
 
     // SCROLL EFFECT
     React.useEffect(() => {
-        window.scrollTo({
-            left: 0,
-            top: window.innerHeight,
-            behavior: 'smooth',
-        })
+        if (launched) {
+            window.scrollTo({
+                left: 0,
+                top: window.innerHeight,
+                behavior: 'smooth',
+            })
+        }
     }, [launched])
 
     React.useEffect(() => {
-        window.scrollTo({
-            left: 0,
-            top: document.getElementById('results')?.scrollHeight,
-            behavior: 'smooth',
-        })
+        if (analyzedFiles.length !== 0) {
+            window.scrollTo({
+                left: 0,
+                top: document.getElementById('results')?.scrollHeight,
+                behavior: 'smooth',
+            })
+        }
     }, [analyzedFiles])
 
     //PROCESSING
@@ -274,7 +278,7 @@ const FileDropzone = styled.div`
     &:hover {
         background: linear-gradient(45deg, #e14854, #97214d);
         & > img {
-            rotate: 10deg;
+            rotate: -10deg;
         }
     }
 `
