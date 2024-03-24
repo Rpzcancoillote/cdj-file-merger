@@ -3,10 +3,9 @@ import * as React from 'react'
 import styled from 'styled-components'
 import FileMerger from '../components/FileMerger'
 import KmlExtractor from '../components/KmlExtractor'
-import { isMobile } from 'react-device-detect'
 
 const HomeScreen = () => {
-    const [action, setAction] = React.useState<'filemerger' | 'kmlextractor'>('kmlextractor')
+    const [action, setAction] = React.useState<'filemerger' | 'kmlextractor'>('filemerger')
 
     return (
         <>

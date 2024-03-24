@@ -48,6 +48,7 @@ const ButtonLabel = styled.h4<{ disabled: boolean }>`
     font-family: MainFont;
     font-size: 16px;
     font-style: italic;
+    color: ${(props) => (props.disabled ? DISABLED_COLOR : '#000000')};
 
     margin: 0 10px;
 `
