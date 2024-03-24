@@ -6,15 +6,21 @@
 
 body {
   margin: 0;
-  font-family: 'Roboto-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'MainFont', 'Roboto-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #22232A;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Webfont: Thunder-BlackLC */
+@font-face {
+  font-family: 'MainFont';
+  src: url('./assets/fonts/Paris2024-Variable.ttf') format('truetype');
+  text-rendering: optimizeLegibility;
 }

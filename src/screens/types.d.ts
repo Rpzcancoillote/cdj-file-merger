@@ -1,9 +1,21 @@
+declare module 'react-xml-parser'
 declare type Cell = string | number | boolean | typeof Date
 declare type Row = Cell[]
 
 interface MyFile {
     filename: string
     content: Row[]
+}
+
+interface MyKmlFile {
+    filename: string
+    content: string
+}
+
+interface DatedLocation {
+    start: Date
+    latitude: string
+    longitude: string
 }
 
 interface MyAnalyzedFiles {
