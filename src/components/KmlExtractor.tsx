@@ -288,7 +288,7 @@ const FileArray = styled.ul`
     margin: 0;
     flex: 1;
 `
-const FILE_LINE_HEIGHT = 30
+const FILE_LINE_HEIGHT = isMobile ? 60 : 40
 const LoadedFilesLine = styled.li`
     display: flex;
     flex-direction: row;
