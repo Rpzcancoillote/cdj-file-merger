@@ -18,8 +18,8 @@ const MariageNimegue = () => {
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({ maxFiles: 1 })
 
-    const [insee, setInsee] = React.useState<string>('33000')
-    const [departement, setDepartement] = React.useState<string>('Gironde')
+    const [insee, setInsee] = React.useState<string>('')
+    const [departement, setDepartement] = React.useState<string>('')
 
     // SCROLL EFFECT
     React.useEffect(() => {
@@ -146,6 +146,7 @@ const MariageNimegue = () => {
                                         style={{ textDecoration: 'unset' }}
                                         data={allEventsToCSV as any}
                                         separator=";"
+                                        enclosingCharacter={`'`}
                                         target="_blank"
                                         filename={`${acceptedFiles[0].name.split('.')[0]}.csv`}>
                                         <Button label="Exporter le fichier" onClick={() => {}} />
