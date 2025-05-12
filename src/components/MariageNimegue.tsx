@@ -146,7 +146,7 @@ const MariageNimegue = () => {
                                         style={{ textDecoration: 'unset' }}
                                         data={allEventsToCSV as any}
                                         separator=";"
-                                        enclosingCharacter={`'`}
+                                        enclosingCharacter=""
                                         target="_blank"
                                         filename={`${acceptedFiles[0].name.split('.')[0]}.csv`}>
                                         <Button label="Exporter le fichier" onClick={() => {}} />
