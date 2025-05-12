@@ -56,7 +56,6 @@ const KmlExtractor = () => {
             reader.onerror = () => console.log('file reading has failed')
             reader.onload = () => {
                 var xml = new XMLParser().parseFromString(reader.result)
-                console.log('Reader : ', reader.result)
 
                 const date_string = xml.getElementsByTagName('name')[0].value.split(' ')[2]
                 const start_string = xml.getElementsByTagName('name')[2].value.split(' ')[5]

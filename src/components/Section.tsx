@@ -8,7 +8,6 @@ interface Props {
 }
 
 const Section = ({ id, children }: Props) => {
-    console.log('Is mobile : ', isMobile)
     return (
         <Container id={id} isMobile={isMobile}>
             {children}

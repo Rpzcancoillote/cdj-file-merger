@@ -3,23 +3,33 @@ import * as React from 'react'
 import styled from 'styled-components'
 import FileMerger from '../components/FileMerger'
 import KmlExtractor from '../components/KmlExtractor'
+import MariageNimegue from '../components/MariageNimegue'
 
 const HomeScreen = () => {
-    const [action, setAction] = React.useState<'filemerger' | 'kmlextractor'>('filemerger')
+    const [action, setAction] = React.useState<'mariageNimegue' | 'filemerger' | 'kmlextractor'>(
+        'mariageNimegue'
+    )
 
     return (
         <>
             <Header>
                 <BackgroundHeader src={require('../assets/header.png')} />
                 <MenuContent>
-                    <Pagetitle>Outil d'aide à la gestion</Pagetitle>
+                    <Pagetitle>Traitement fichiers Nimegue</Pagetitle>
                     <Pagesubtitle>
-                        {action === 'filemerger'
-                            ? 'Traitement des évenements'
-                            : 'Traitement des tracés'}
+                        {action === 'mariageNimegue'
+                            ? 'Mariage (XLS)'
+                            : action === 'filemerger'
+                              ? 'Traitement des évenements'
+                              : 'Traitement des tracés'}
                     </Pagesubtitle>
                     <Menu>
                         <MenuItem
+                            selected={action === 'mariageNimegue'}
+                            onClick={() => setAction('mariageNimegue')}>
+                            Mariage
+                        </MenuItem>
+                        {/* <MenuItem
                             selected={action === 'filemerger'}
                             onClick={() => setAction('filemerger')}>
                             Évènements
@@ -28,11 +38,17 @@ const HomeScreen = () => {
                             selected={action === 'kmlextractor'}
                             onClick={() => setAction('kmlextractor')}>
                             Tracés kml
-                        </MenuItem>
+                        </MenuItem> */}
                     </Menu>
                 </MenuContent>
             </Header>
-            {action === 'filemerger' ? <FileMerger /> : <KmlExtractor />}
+            {action === 'mariageNimegue' ? (
+                <MariageNimegue />
+            ) : action === 'filemerger' ? (
+                <FileMerger />
+            ) : (
+                <KmlExtractor />
+            )}
             <ScrollToTop onClick={() => window.scrollTo({ left: 0, top: 0, behavior: 'smooth' })}>
                 <Arrow src={require('../assets/arrow.png')} />
             </ScrollToTop>
