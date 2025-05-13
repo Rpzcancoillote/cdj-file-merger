@@ -9,7 +9,7 @@ import ExcelToCsvPage from '../components/Wedding'
 const HomeScreen = () => {
     const [action, setAction] = React.useState<
         'mariageNimegue' | 'ExcelToCsvPage' | 'filemerger' | 'kmlextractor'
-    >('mariageNimegue')
+    >('ExcelToCsvPage')
 
     return (
         <>
@@ -25,15 +25,15 @@ const HomeScreen = () => {
                               : 'Traitement des tracés'}
                     </Pagesubtitle>
                     <Menu>
-                        <MenuItem
+                        {/* <MenuItem
                             selected={action === 'mariageNimegue'}
                             onClick={() => setAction('mariageNimegue')}>
                             Mariage
-                        </MenuItem>
+                        </MenuItem> */}
                         <MenuItem
                             selected={action === 'ExcelToCsvPage'}
                             onClick={() => setAction('ExcelToCsvPage')}>
-                            NEW
+                            MARIAGES
                         </MenuItem>
                         {/* <MenuItem
                             selected={action === 'filemerger'}

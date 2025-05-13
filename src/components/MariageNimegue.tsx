@@ -55,11 +55,12 @@ const MariageNimegue = () => {
     }
 
     const allEventsToCSV = datas[0]
-        ? datas[0].map(
-              (e) =>
-                  `NIMEGUEV3;${insee};${e[0]};${insee.slice(0, 2)};${departement};M;${typeof e[5] === 'string' ? e[5] : format(e[5] as any, 'dd/MM/yyyy')};;;;${e[1]};${e[2]};;;;;;;;;;;;;;;;;${e[3]};${e[4]}`
-          ).join(`
-                `)
+        ? datas[0]
+              .map(
+                  (e) =>
+                      `NIMEGUEV3;${insee};${e[0]};${insee.slice(0, 2)};${departement};M;${typeof e[5] === 'string' ? e[5] : format(e[5] as any, 'dd/MM/yyyy')};;;;${e[1]};${e[2]};;;;;;;;;;;;;;;;;${e[3]};${e[4]}`
+              )
+              .join('\r\n')
         : ''
 
     return (
