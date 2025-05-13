@@ -4,7 +4,6 @@ import * as React from 'react'
 import styled from 'styled-components'
 import { useDropzone } from 'react-dropzone'
 import readXlsxFile from 'read-excel-file'
-import { CSVLink } from 'react-csv'
 import Section from './Section'
 import Title from './Title'
 import Subtitle from './Subtitle'
@@ -43,40 +42,24 @@ const MariageNimegue = () => {
         }, 1000)
     }
 
-    const allEventsToCSV =
-        datas[0] &&
-        datas[0].map((e) => [
-            'NIMEGUEV3',
-            insee,
-            e[0],
-            insee.slice(0, 2),
-            departement,
-            'M',
-            e[5],
-            ,
-            ,
-            ,
-            e[1],
-            e[2],
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            ,
-            e[3],
-            e[4],
-        ])
+    const exportTextFile = (filename: string, content: string) => {
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' })
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(blob)
+        link.download = filename
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+        URL.revokeObjectURL(link.href)
+    }
+    const allEventsToCSV = datas[0]
+        ? datas[0]
+              .map(
+                  (e) =>
+                      `NIMEGUEV3;${insee};${e[0]};${insee.slice(0, 2)};${departement};M;${e[5]};;;${e[1]};${e[2]};;;;;;;;;;;;;;;;;${e[3]};${e[4]}`
+              )
+              .join('\n')
+        : ''
 
     return (
         <>
@@ -142,15 +125,15 @@ const MariageNimegue = () => {
                                     </DataLine>
                                 </VData>
                                 <ButtonContainer>
-                                    <CSVLink
-                                        style={{ textDecoration: 'unset' }}
-                                        data={allEventsToCSV as any}
-                                        separator=";"
-                                        enclosingCharacter=""
-                                        target="_blank"
-                                        filename={`${acceptedFiles[0].name.split('.')[0]}.csv`}>
-                                        <Button label="Exporter le fichier" onClick={() => {}} />
-                                    </CSVLink>
+                                    <Button
+                                        label="Exporter le fichier"
+                                        onClick={() =>
+                                            exportTextFile(
+                                                acceptedFiles[0].name.split('.')[0],
+                                                allEventsToCSV
+                                            )
+                                        }
+                                    />
                                 </ButtonContainer>
                             </Section>
                         </>

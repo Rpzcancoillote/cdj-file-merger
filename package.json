@@ -15,6 +15,7 @@
         "@types/react-dom": "^18.2.19",
         "convert-excel-to-json": "^1.7.0",
         "date-fns": "^3.6.0",
+        "export-to-csv": "^1.4.0",
         "leaflet": "^1.9.4",
         "prettier": "^3.2.5",
         "react": "^18.2.0",
