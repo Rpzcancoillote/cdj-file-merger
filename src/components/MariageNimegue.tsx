@@ -56,7 +56,7 @@ const MariageNimegue = () => {
         ? datas[0]
               .map(
                   (e) =>
-                      `NIMEGUEV3;${insee};${e[0]};${insee.slice(0, 2)};${departement};M;${e[5]};;;${e[1]};${e[2]};;;;;;;;;;;;;;;;;${e[3]};${e[4]}`
+                      `NIMEGUEV3;${insee};${e[0]};${insee.slice(0, 2)};${departement};M;${e[5]};;;;${e[1]};${e[2]};;;;;;;;;;;;;;;;;${e[3]};${e[4]}`
               )
               .join('\n')
         : ''
