@@ -4,11 +4,12 @@ import styled from 'styled-components'
 import FileMerger from '../components/FileMerger'
 import KmlExtractor from '../components/KmlExtractor'
 import MariageNimegue from '../components/MariageNimegue'
+import ExcelToCsvPage from '../components/Wedding'
 
 const HomeScreen = () => {
-    const [action, setAction] = React.useState<'mariageNimegue' | 'filemerger' | 'kmlextractor'>(
-        'mariageNimegue'
-    )
+    const [action, setAction] = React.useState<
+        'mariageNimegue' | 'ExcelToCsvPage' | 'filemerger' | 'kmlextractor'
+    >('mariageNimegue')
 
     return (
         <>
@@ -29,6 +30,11 @@ const HomeScreen = () => {
                             onClick={() => setAction('mariageNimegue')}>
                             Mariage
                         </MenuItem>
+                        <MenuItem
+                            selected={action === 'ExcelToCsvPage'}
+                            onClick={() => setAction('ExcelToCsvPage')}>
+                            NEW
+                        </MenuItem>
                         {/* <MenuItem
                             selected={action === 'filemerger'}
                             onClick={() => setAction('filemerger')}>
@@ -44,6 +50,8 @@ const HomeScreen = () => {
             </Header>
             {action === 'mariageNimegue' ? (
                 <MariageNimegue />
+            ) : action === 'ExcelToCsvPage' ? (
+                <ExcelToCsvPage />
             ) : action === 'filemerger' ? (
                 <FileMerger />
             ) : (
