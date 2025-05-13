@@ -10,6 +10,7 @@ import Subtitle from './Subtitle'
 import Button from './Button'
 import Loader from './Loader'
 import { isMobile } from 'react-device-detect'
+import { format } from 'date-fns'
 
 const MariageNimegue = () => {
     const [launched, setLaunched] = React.useState<boolean>(false)
@@ -52,13 +53,13 @@ const MariageNimegue = () => {
         document.body.removeChild(link)
         URL.revokeObjectURL(link.href)
     }
+
     const allEventsToCSV = datas[0]
-        ? datas[0]
-              .map(
-                  (e) =>
-                      `NIMEGUEV3;${insee};${e[0]};${insee.slice(0, 2)};${departement};M;${e[5]};;;;${e[1]};${e[2]};;;;;;;;;;;;;;;;;${e[3]};${e[4]}`
-              )
-              .join('\n')
+        ? datas[0].map(
+              (e) =>
+                  `NIMEGUEV3;${insee};${e[0]};${insee.slice(0, 2)};${departement};M;${typeof e[5] === 'string' ? e[5] : format(e[5] as any, 'dd/MM/yyyy')};;;;${e[1]};${e[2]};;;;;;;;;;;;;;;;;${e[3]};${e[4]}`
+          ).join(`
+                `)
         : ''
 
     return (
@@ -129,7 +130,7 @@ const MariageNimegue = () => {
                                         label="Exporter le fichier"
                                         onClick={() =>
                                             exportTextFile(
-                                                acceptedFiles[0].name.split('.')[0] + ".csv",
+                                                acceptedFiles[0].name.split('.')[0] + '.csv',
                                                 allEventsToCSV
                                             )
                                         }
