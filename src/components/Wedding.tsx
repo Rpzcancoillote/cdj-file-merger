@@ -13,7 +13,17 @@ const Container = styled.div`
     max-width: 1200px;
     margin: auto;
 `
+const InputContainer = styled.div`
+    background: #f9f9f9;
+    border-left: 4px solid #007bff;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    animation: ${fadeIn} 0.4s ease-in;
 
+    display: flex;
+    flex-direction: column;
+`
 const Input = styled.input`
     margin: 1rem 0;
     padding: 0.5rem;
@@ -139,19 +149,21 @@ const ExcelToCsvConverter = () => {
     return (
         <Container>
             <h2>Convertisseur Excel → CSV</h2>
-            <Input
-                type="text"
-                placeholder="Code INSEE"
-                value={insee}
-                onChange={(e) => setInsee(e.target.value)}
-            />
-            <Input
-                type="text"
-                placeholder="Nom du département"
-                value={departement}
-                onChange={(e) => setDepartement(e.target.value)}
-            />
-            <Input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
+            <InputContainer>
+                <Input
+                    type="text"
+                    placeholder="Code INSEE"
+                    value={insee}
+                    onChange={(e) => setInsee(e.target.value)}
+                />
+                <Input
+                    type="text"
+                    placeholder="Nom du département"
+                    value={departement}
+                    onChange={(e) => setDepartement(e.target.value)}
+                />
+                <Input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
+            </InputContainer>
 
             {csvData.length > 0 && (
                 <>
